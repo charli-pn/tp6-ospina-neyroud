@@ -101,6 +101,7 @@ Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun
 
 #### Question 19 : Par défaut, combien de temps la commande sudo conserve-t-elle votre mot de passe en mémoire ? Quelle commande permet de forcer sudo à oublier votre mot de passe ?
 
+"sudo" conserve le mot de passe en mémoire pendant 15 minutes par défaut. Pour forcer l'oubli, on utilise "sudo -k".
 
 ## Exercice 2. Gestion des permissions
 
