@@ -48,23 +48,29 @@ On attribue ensuite les droits spécifiques aux dossiers :
 * ```sudo chown -R :groupe2 /home/groupe2```  ```sudo chmod g+w group2```
 
 #### Question 8 : Comment faire pour que, dans ces dossiers, seul le propriétaire d’un fichier ait le droit de renommer ou supprimer ce fichier ?
-```sudo chmod go-w groupe1```
-```sudo chmod go-w groupe2```
-
-
+```sudo chmod +t groupe1```
+```sudo chmod +t groupe2```
 
 #### Question 9 : Pouvez-vous vous connecter en tant que u1 ? Pourquoi ?
 
+Non puisque nous ne lui avons pas encore assigné de mot de passe.
 
 #### Question 10 : Activez le compte de l’utilisateur u1 et vérifiez que vous pouvez désormais vous connecter avec son compte.
 
+On définit un mot de passe pour u1 avec la commande ```sudo passwd u1```.
 
 #### Question 11 : Quels sont l’uid et le gid de u1 ?
 
+On se connecte avec l'utilisateur u1 : ```su u1```. On saisit ensuite la commande ```id```.
+On obtient alors ```uid=1001(u1) gid=1001(groupe1) groupes=1001(groupe1)```.
 
-#### Question 12 : Quel utilisateur a pour uid 1003 ?
+#### Question 12 : Quel utilisateur a pour uid ?
+
+Il s'agit de l'utilisateur u3 puisque ce dernier a été créer en troisième position.
 
 #### Question 13 : Quel est l’id du groupe groupe1 ?
+
+
 
 #### Question 14 : Quel groupe a pour guid 1002 ? ( Rien n’empêche d’avoir un groupe dont le nom serait 1002...)
 
