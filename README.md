@@ -74,7 +74,13 @@ On saisit la commande ```cat /etc/group | grep groupe1``` qui nous retourne alor
 
 #### Question 14 : Quel groupe a pour guid 1002 ? ( Rien n’empêche d’avoir un groupe dont le nom serait 1002...)
 
+On saisit la commande ```grep :1002: /etc/group``` qui nous retourne alors ```groupe2:x:1002:u2,u3,u4```. C'est donc le groupe 2 
+qui a pour guid 1002.
+
 #### Question 15 : Retirez l’utilisateur u3 du groupe groupe2. Que se passe-t-il ? Expliquez.
+
+
+
 
 #### Question 16 : Modifiez le compte de u4 de sorte que :
 * il expire au 1 er juin 2019
