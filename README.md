@@ -70,7 +70,7 @@ Il s'agit de l'utilisateur u3 puisque ce dernier a été créer en troisième po
 
 #### Question 13 : Quel est l’id du groupe groupe1 ?
 
-
+On saisit la commande ```cat /etc/group | grep groupe1``` qui nous retourne alors ```groupe1:x:1001:u1,u2,u4```. L'ID du groupe 1 est donc 1001.
 
 #### Question 14 : Quel groupe a pour guid 1002 ? ( Rien n’empêche d’avoir un groupe dont le nom serait 1002...)
 
