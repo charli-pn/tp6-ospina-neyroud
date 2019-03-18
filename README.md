@@ -93,10 +93,11 @@ On saisit la commande ```sudo chage u4``` puis on configure comme demandé dans 
 
 #### Question 17 : Quel est l’interpréteur de commandes (Shell) de l’utilisateur root ?
 
-
-
+Il s'agit de Bash. ```echo $SHELL``` retourne ```/bin/bash```
 
 #### Question 18 : à quoi correspond l’utilisateur nobody ?
+
+Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun droit (si on regarde dans /etc/shadow il n'y a pas de mot de passe), mais néanmoins il joue un grand rôle pour le lancement de certains service (deamon).
 
 #### Question 19 : Par défaut, combien de temps la commande sudo conserve-t-elle votre mot de passe en mémoire ? Quelle commande permet de forcer sudo à oublier votre mot de passe ?
 
