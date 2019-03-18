@@ -5,11 +5,21 @@ ainsi que les quotas disque.
 
 ## Exercice 1. Gestion des utilisateurs et des groupes
 
-#### Question 1 : Commencez par créer ensuite deux groupes groupe1 et groupe2
+#### Question 1 : Commencez par créer deux groupes groupe1 et groupe2
 
+```bash
+sudo groupadd groupe1
+sudo groupadd groupe2
+```
 
 #### Question 2 : Créez ensuite 4 utilisateurs u1, u2, u3, u4 avec leur dossier ”home” et ayant bash pour shell
 
+```bash
+sudo useradd -m -s /bin/bash u1
+sudo useradd -m -s /bin/bash u2
+sudo useradd -m -s /bin/bash u3
+sudo useradd -m -s /bin/bash u4
+```
 
 #### Question 3 : Placez les utilisateurs dans les groupes :
 * u1, u2, u4 dans groupe1
