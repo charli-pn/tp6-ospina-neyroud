@@ -33,19 +33,20 @@ On peut utiliser la commande :
 
 #### Question 5 : Faites de groupe1 le groupe propriétaire de /home/u1 et /home/u2 et de groupe2 le groupe propriétaire de /home/u3 et /home/u4
 
-
-
-
-
-
+```sudo chown -R :groupe1 /home/u1 /home/u2```  
+```sudo chown -R :groupe2 /home/u3 /home/u4```
 
 #### Question 6 : Remplacez le groupe primaire des utilisateurs :
-* groupe1 pour u1 et u2
-* groupe2 pour u3 et u4
+* groupe1 pour u1 et u2 ```sudo usermod u1 -g groupe1``` ```sudo usermod u2 -g groupe1```
+* groupe2 pour u3 et u4 ```sudo usermod u3 -g groupe2``` ```sudo usermod u4 -g groupe2```
 
 
 #### Question 7 : Créez deux répertoires /home/groupe1 et /home/groupe2 pour le contenu commun aux groupes, et mettez en place les permissions permettant aux membres de chaque groupe d’écrire dans le dossier associé.
 
+On créer tout d'abord les deux répertoires ```sudo mkdir groupe1 groupe2```.  
+On attribue ensuite les droits spécifiques aux dossiers :
+* ```sudo chown -R :groupe1 /home/groupe1``` ```sudo chmod g+w groupe1```
+* ```sudo chown -R :groupe2 /home/groupe2```  ```sudo chmod g+w group2```
 
 #### Question 8 : Comment faire pour que, dans ces dossiers, seul le propriétaire d’un fichier ait le droit de renommer ou supprimer ce fichier ?
 
