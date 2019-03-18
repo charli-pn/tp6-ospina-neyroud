@@ -107,10 +107,12 @@ Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun
 
 
 #### Question 1 : Dans votre $HOME, créez un dossier test, et dans ce dossier un fichier fichier1 contenant quelques lignes de texte. Quels sont les droits sur test et fichier1 ?
+drwxr-xr-x  2 root root    4096 mars  18 11:49 test/
+-rw-r--r--  1 root root   37 mars  18 11:49 fichier1
 
 
 #### Question 2 : Retirez tous les droits sur ce fichier (même pour vous), puis essayez de le modifier et de l’afficher en tant que root. Conclusion ?
-
+Après avoir modifié ls droits de tous les users/groupes, le root peut quand même modifier le fichier.
 
 #### Question 3 : Redonnez vous les droits en écriture et exécution sur fichier puis exécutez la commande echo "echo Hello" > fichier. On a vu lors des TP précédents que cette commande remplace le contenu d’un fichier s’il existe déjà. Que peut-on dire au sujet des droits ?
 
