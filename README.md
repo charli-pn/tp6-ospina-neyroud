@@ -27,7 +27,17 @@ sudo useradd -m -s /bin/bash u4
 
 #### Question 4 : Donnez deux moyens d’afficher les membres de groupe2
 
+On peut utiliser la commande :
+  * ```sudo cat /etc/group | grep 'groupe2'``` par exemple qui nous retourne ```groupe2:x:1002:u2,u3,u4```
+  * ```members groupe2``` non installée par défaut qui retoune ```u2 u3 u4```
+
 #### Question 5 : Faites de groupe1 le groupe propriétaire de /home/u1 et /home/u2 et de groupe2 le groupe propriétaire de /home/u3 et /home/u4
+
+
+
+
+
+
 
 #### Question 6 : Remplacez le groupe primaire des utilisateurs :
 * groupe1 pour u1 et u2
