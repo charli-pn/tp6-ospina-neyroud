@@ -89,8 +89,11 @@ On obtient alors ```Retrait de l'utilisateur u3 du groupe groupe2```
 * l’utilisateur est averti 14 jours avant l’expiration de son mot de passe
 * le compte sera bloqué 30 jours après expiration du mot de passe
 
+On saisit la commande ```sudo chage u4``` puis on configure comme demandé dans l'énnoncé.
 
 #### Question 17 : Quel est l’interpréteur de commandes (Shell) de l’utilisateur root ?
+
+
 
 
 #### Question 18 : à quoi correspond l’utilisateur nobody ?
