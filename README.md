@@ -22,8 +22,8 @@ sudo useradd -m -s /bin/bash u4
 ```
 
 #### Question 3 : Placez les utilisateurs dans les groupes :
-* u1, u2, u4 dans groupe1
-* u2, u3, u4 dans groupe2
+* u1, u2, u4 dans groupe1 ```sudo adduser u1 groupe1``` ```sudo adduser u2 groupe1``` ```sudo adduser u4 groupe1```
+* u2, u3, u4 dans groupe2 ```sudo adduser u2 groupe2``` ```sudo adduser u3 groupe2``` ```sudo adduser u4 groupe2```
 
 #### Question 4 : Donnez deux moyens d’afficher les membres de groupe2
 
