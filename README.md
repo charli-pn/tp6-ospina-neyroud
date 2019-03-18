@@ -79,8 +79,8 @@ qui a pour guid 1002.
 
 #### Question 15 : Retirez l’utilisateur u3 du groupe groupe2. Que se passe-t-il ? Expliquez.
 
-
-
+On saisit la commande ```sudo gpasswd -d u3 groupe2```.
+On obtient alors ```Retrait de l'utilisateur u3 du groupe groupe2```
 
 #### Question 16 : Modifiez le compte de u4 de sorte que :
 * il expire au 1 er juin 2019
