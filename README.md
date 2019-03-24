@@ -148,7 +148,7 @@ On essaye de créer un nouveau fichier : ```touch nouveau2``` -> ne marche pas.
 On essaye diverses manipulations sur le fichier ```nouveau``` : 
 * ```nano nouveau``` ne marche pas
 * ```cat nouveau``` ne marche pas
-* ```rm nouveau``` ne marche pas
+* ```rm nouveau``` ne marche pas  
 La commande ```ll .```ne marche pas.  
 La commande ```cd sstest``` ne marche pas.  
 Seule la commande ```cd ..``` va fonctionner car elle utilise la variable ```pwd``` et enlève le dernier dossier.
