@@ -95,10 +95,10 @@ Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun
 
 #### Question 1 : Dans votre $HOME, créez un dossier test, et dans ce dossier un fichier fichier1 contenant quelques lignes de texte. Quels sont les droits sur test et fichier1 ?
 Création du dossier ```test``` dans notre $HOME : ```mkdir test```.  
-On obtient alors comme droits avec la commande ```ll```: ```drwxr-xr-x ```. Le dossier est donc disponible en lecture, écriture et exécution pour username, et en lecture et exécution pour les membres du groupe users et pour les autres utilisateurs non membres.  
+On obtient alors comme droits avec la commande ```ll```: ```drwxrwxr-x ```.
 
 Création du fichier ```fichier1``` dans notre dossier test ```echo "contenu" > test/fichier1.txt```.  
-On obtient alors comme droits avec la commande ```ll test/```-: ```-rw-r--r--```. Le fichier est donc disponible en lecture et écriture pour username, et en lecture seule pour les membres du groupe users et les autres utilisateurs.
+On obtient alors comme droits avec la commande ```ll test/```-: ```-rw-rw-r--```. 
 
 #### Question 2 : Retirez tous les droits sur ce fichier (même pour vous), puis essayez de le modifier et de l’afficher en tant que root. Conclusion ?
 On saisit la commande ```chmod 0 fichier1``` afin de retirer tous les doits sur ce fichier.  
@@ -110,12 +110,15 @@ On saisit la commande ```chmod 300 fichier1``` pour se donner les droits w+x sur
 On saisit ensuite la commande ```echo "echo Hello" > fichier1```.  
 Si on n'a pas les droits d'écriture, il ne peut pas remplacer le contenu d'un fichier déjà existant. Cependant ayant les droits d'écriture et bien nous pouvons.
 
-
 #### Question 4 : Essayez d’exécuter le fichier. Est-ce que cela fonctionne ? Et avec sudo ? Expliquez.
-
+En saisissant la commande ```./fichier1``` le fichier ne s'éxécute pas.  
+En saisissant la commande ```sudo ./fichier1``` le fichier s'éxécute !  
+Cela est normal car même si on a les droits d'exécution, on n'a pas les droits de lecture et comme il s'agit d'un script et non d'un fichier binaire, il ne peut pas le lire. Avec ```sudo``` cependant, on peut car le superuser peut évidemment lire le fichier.
 
 #### Question 5 : Placez-vous dans le répertoire test, et retirez-vous le droit en lecture pour ce répertoire. Listez le contenu du répertoire, puis exécutez ou affichez le contenu du fichier essai. Qu’en déduisez-vous ? Rétablissez le droit en lecture sur test
-
+On saisit la commande ```cd test/``` puis ```chmod -r``` pour se retirer les droit en lecture de ce répertoire.  
+La saisie de la commande ```cat fichier1``` va fonctionner mais ```ll``` ne fonctionnera pas sans droits de lecture.  
+On rétablit alors le droit en lecture sur test ```chmod +r```.
 
 #### Question 6 : Créez dans test un fichier nouveau ainsi qu’un répertoire sstest. Retirez au fichier nouveau et au répertoire test le droit en écriture. Tentez de modifier le fichier nouveau. Rétablissez ensuite le droit en écriture au répertoire test. Tentez de modifier le fichier nouveau, puis de le supprimer. Que pouvez-vous déduire de toutes ces manipulations ?
 
