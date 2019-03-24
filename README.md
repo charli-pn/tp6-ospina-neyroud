@@ -94,25 +94,23 @@ Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun
 ## Exercice 2. Gestion des permissions
 
 #### Question 1 : Dans votre $HOME, créez un dossier test, et dans ce dossier un fichier fichier1 contenant quelques lignes de texte. Quels sont les droits sur test et fichier1 ?
-Création du dossier test dans notre $HOME :
-```
-mkdir test
-ll
-```
-On obtient alors comme droits : ```drwxrwxr-x```.
+Création du dossier ```test``` dans notre $HOME : ```mkdir test```.  
+On obtient alors comme droits avec la commande ```ll```: ```drwxrwxr-x```.
 
-Création du fichier fichier1 dans notre dossier test :
-```
-echo "contenu" > test/fichier1.txt
-ll test/
-```
-On obtient alors comme droits : ```-rw-rw-r--```.
+Création du fichier ```fichier1``` dans notre dossier test ```echo "contenu" > test/fichier1.txt```.  
+On obtient alors comme droits avec la commande ```ll test/```-: ```-rw-rw-r--```.
 
 #### Question 2 : Retirez tous les droits sur ce fichier (même pour vous), puis essayez de le modifier et de l’afficher en tant que root. Conclusion ?
-
+On saisit la commande ```chmod 0 fichier1``` afin de retirer tous les doits sur ce fichier.  
+On va ensuite passer root : ```su root```.  
+On tape ensuite : ```nano fichier1```. Il est alors possible de modifier et lire ```fichier1```.
 
 #### Question 3 : Redonnez vous les droits en écriture et exécution sur fichier puis exécutez la commande echo "echo Hello" > fichier. On a vu lors des TP précédents que cette commande remplace le contenu d’un fichier s’il existe déjà. Que peut-on dire au sujet des droits ?
-
+On saisit les commandes : 
+```
+chmod 300 fichier1
+echo "echo Hello" > fichier1
+```
 
 #### Question 4 : Essayez d’exécuter le fichier. Est-ce que cela fonctionne ? Et avec sudo ? Expliquez.
 
