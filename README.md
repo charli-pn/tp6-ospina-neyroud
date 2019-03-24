@@ -6,42 +6,39 @@ ainsi que les quotas disque.
 ## Exercice 1. Gestion des utilisateurs et des groupes
 
 #### Question 1 : Commencez par créer deux groupes groupe1 et groupe2
-
 ```bash
 sudo groupadd groupe1
 sudo groupadd groupe2
 ```
 
 #### Question 2 : Créez ensuite 4 utilisateurs u1, u2, u3, u4 avec leur dossier ”home” et ayant bash pour shell
-
 ```bash
 sudo useradd -m -s /bin/bash u1
 sudo useradd -m -s /bin/bash u2
 sudo useradd -m -s /bin/bash u3
 sudo useradd -m -s /bin/bash u4
 ```
+Pour vérifier que la création de leur dossier "home" est bien effective on saisit la commande ```ll /home/```.
 
 #### Question 3 : Placez les utilisateurs dans les groupes :
 * u1, u2, u4 dans groupe1 ```sudo adduser u1 groupe1``` ```sudo adduser u2 groupe1``` ```sudo adduser u4 groupe1```
 * u2, u3, u4 dans groupe2 ```sudo adduser u2 groupe2``` ```sudo adduser u3 groupe2``` ```sudo adduser u4 groupe2```
 
 #### Question 4 : Donnez deux moyens d’afficher les membres de groupe2
-
 On peut utiliser la commande :
   * ```sudo cat /etc/group | grep 'groupe2'``` par exemple qui nous retourne ```groupe2:x:1002:u2,u3,u4```
   * ```members groupe2``` non installée par défaut qui retoune ```u2 u3 u4```
 
 #### Question 5 : Faites de groupe1 le groupe propriétaire de /home/u1 et /home/u2 et de groupe2 le groupe propriétaire de /home/u3 et /home/u4
-
 ```sudo chown -R :groupe1 /home/u1 /home/u2```  
 ```sudo chown -R :groupe2 /home/u3 /home/u4```
+L'argument "-R" permet de d'appliquer les droits de manière récursive. 
 
 #### Question 6 : Remplacez le groupe primaire des utilisateurs :
 * groupe1 pour u1 et u2 ```sudo usermod u1 -g groupe1``` ```sudo usermod u2 -g groupe1```
 * groupe2 pour u3 et u4 ```sudo usermod u3 -g groupe2``` ```sudo usermod u4 -g groupe2```
 
 #### Question 7 : Créez deux répertoires /home/groupe1 et /home/groupe2 pour le contenu commun aux groupes, et mettez en place les permissions permettant aux membres de chaque groupe d’écrire dans le dossier associé.
-
 On créer tout d'abord les deux répertoires ```sudo mkdir groupe1 groupe2```.  
 On attribue ensuite les droits spécifiques aux dossiers :
 * ```sudo chown -R :groupe1 /home/groupe1``` ```sudo chmod g+w groupe1```
