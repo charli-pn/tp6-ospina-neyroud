@@ -95,10 +95,10 @@ Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun
 
 #### Question 1 : Dans votre $HOME, créez un dossier test, et dans ce dossier un fichier fichier1 contenant quelques lignes de texte. Quels sont les droits sur test et fichier1 ?
 Création du dossier ```test``` dans notre $HOME : ```mkdir test```.  
-On obtient alors comme droits avec la commande ```ll```: ```drwxrwxr-x ```.
+On obtient alors comme droits avec la commande ```ll``` : ```drwxrwxr-x ```.
 
 Création du fichier ```fichier1``` dans notre dossier test ```echo "contenu" > test/fichier1.txt```.  
-On obtient alors comme droits avec la commande ```ll test/```-: ```-rw-rw-r--```. 
+On obtient alors comme droits avec la commande ```ll test/``` : ```-rw-rw-r--```. 
 
 #### Question 2 : Retirez tous les droits sur ce fichier (même pour vous), puis essayez de le modifier et de l’afficher en tant que root. Conclusion ?
 On saisit la commande ```chmod 0 fichier1``` afin de retirer tous les doits sur ce fichier.  
@@ -121,7 +121,14 @@ La saisie de la commande ```cat fichier1``` va fonctionner mais ```ll``` ne fonc
 On rétablit alors le droit en lecture sur test ```chmod +r```.
 
 #### Question 6 : Créez dans test un fichier nouveau ainsi qu’un répertoire sstest. Retirez au fichier nouveau et au répertoire test le droit en écriture. Tentez de modifier le fichier nouveau. Rétablissez ensuite le droit en écriture au répertoire test. Tentez de modifier le fichier nouveau, puis de le supprimer. Que pouvez-vous déduire de toutes ces manipulations ?
-
+On se place dans le dossier ```test``` : ```cd test/```.  
+On va créer un fichier ```nouveau``` : ```touch nouveau``` et le répertoire ```sstest``` : ```mkdir sstest```.  
+On va retirer au fichier ```nouveau``` le droit en écriture : ```chmod -w nouveau```.  
+Un ```echo "bonjour" > nouveau``` ne fonctionnera pas sans les droits en écriture.  
+On va donner au dossier ```test``` le droit en écriture : ```chmod +w```.  
+Un ```echo "bonjour" > nouveau``` ne fonctionnera toujours pas sans les droits d'écriture.
+Un ```rm nouveau " > nouveau``` ne fonctionnera pas sans les droits d'écriture.
+Nous pouvons donc en déduire que le changement des droits sur un dossier ne modifie pas les droits sur le fichier contenu dans ce dossier (absence de recursivité).
 
 #### Question 7 : Positionnez vous dans votre répertoire personnel, puis retirez le droit en exécution du répertoire test. Tentez de créer, supprimer, ou modifier un fichier dans le répertoire test, de vous y déplacer, d’en lister le contenu, etc...Qu’en déduisez vous quant au sens du droit en exécution pour les répertoires ?
 
