@@ -45,59 +45,49 @@ On attribue ensuite les droits spécifiques aux dossiers :
 * ```sudo chown -R :groupe2 /home/groupe2```  ```sudo chmod g+w group2```
 
 #### Question 8 : Comment faire pour que, dans ces dossiers, seul le propriétaire d’un fichier ait le droit de renommer ou supprimer ce fichier ?
+On peut activer le sticky bit grâce à la commande : 
 ```sudo chmod +t groupe1```
 ```sudo chmod +t groupe2```
 
 #### Question 9 : Pouvez-vous vous connecter en tant que u1 ? Pourquoi ?
-
 Non puisque nous ne lui avons pas encore assigné de mot de passe.
 
 #### Question 10 : Activez le compte de l’utilisateur u1 et vérifiez que vous pouvez désormais vous connecter avec son compte.
-
 On définit un mot de passe pour u1 avec la commande ```sudo passwd u1```.
 
 #### Question 11 : Quels sont l’uid et le gid de u1 ?
-
 On se connecte avec l'utilisateur u1 : ```su u1```. On saisit ensuite la commande ```id```.
 On obtient alors ```uid=1001(u1) gid=1001(groupe1) groupes=1001(groupe1)```.
 
 #### Question 12 : Quel utilisateur a pour uid ?
-
 Il s'agit de l'utilisateur u3 puisque ce dernier a été créer en troisième position.
 
 #### Question 13 : Quel est l’id du groupe groupe1 ?
-
 On saisit la commande ```cat /etc/group | grep groupe1``` qui nous retourne alors ```groupe1:x:1001:u1,u2,u4```. L'ID du groupe 1 est donc 1001.
 
 #### Question 14 : Quel groupe a pour guid 1002 ? ( Rien n’empêche d’avoir un groupe dont le nom serait 1002...)
-
-On saisit la commande ```grep :1002: /etc/group``` qui nous retourne alors ```groupe2:x:1002:u2,u3,u4```. C'est donc le groupe 2 
-qui a pour guid 1002.
+On saisit la commande ```grep :1002: /etc/group``` qui nous retourne alors ```groupe2:x:1002:u2,u3,u4```. C'est donc le groupe 2 qui a pour guid 1002.
 
 #### Question 15 : Retirez l’utilisateur u3 du groupe groupe2. Que se passe-t-il ? Expliquez.
-
 On saisit la commande ```sudo gpasswd -d u3 groupe2```.
-On obtient alors ```Retrait de l'utilisateur u3 du groupe groupe2```
+On obtient alors ```Retrait de l'utilisateur u3 du groupe groupe2```.
 
 #### Question 16 : Modifiez le compte de u4 de sorte que :
-* il expire au 1 er juin 2019
-* il faut changer de mot de passe avant 90 jours
-* il faut attendre 5 jours pour modifier un mot de passe
-* l’utilisateur est averti 14 jours avant l’expiration de son mot de passe
-* le compte sera bloqué 30 jours après expiration du mot de passe
+* il expire au 1 er juin 2019 (-E)
+* il faut changer de mot de passe avant 90 jours (-M)
+* il faut attendre 5 jours pour modifier un mot de passe (-m)
+* l’utilisateur est averti 14 jours avant l’expiration de son mot de passe (-W)
+* le compte sera bloqué 30 jours après expiration du mot de passe (-I)
 
-On saisit la commande ```sudo chage u4``` puis on configure comme demandé dans l'énnoncé.
+On saisit la commande ```sudo chage -E 2019-06-01 -M 90 -m 5 -W 14 -I 30  u4```.
 
 #### Question 17 : Quel est l’interpréteur de commandes (Shell) de l’utilisateur root ?
-
-Il s'agit de Bash. ```echo $SHELL``` retourne ```/bin/bash```
+Il s'agit de Bash puisque la commande ```echo $SHELL``` retourne ```/bin/bash```.
 
 #### Question 18 : à quoi correspond l’utilisateur nobody ?
-
 Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun droit (si on regarde dans /etc/shadow il n'y a pas de mot de passe), mais néanmoins il joue un grand rôle pour le lancement de certains service (deamon).
 
 #### Question 19 : Par défaut, combien de temps la commande sudo conserve-t-elle votre mot de passe en mémoire ? Quelle commande permet de forcer sudo à oublier votre mot de passe ?
-
 "sudo" conserve le mot de passe en mémoire pendant 15 minutes par défaut. Pour forcer l'oubli, on utilise "sudo -k".
 
 ## Exercice 2. Gestion des permissions
