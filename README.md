@@ -90,16 +90,26 @@ Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun
 #### Question 19 : Par défaut, combien de temps la commande sudo conserve-t-elle votre mot de passe en mémoire ? Quelle commande permet de forcer sudo à oublier votre mot de passe ?
 "sudo" conserve le mot de passe en mémoire pendant 15 minutes par défaut. Pour forcer l'oubli, on utilise "sudo -k".
 
+
 ## Exercice 2. Gestion des permissions
 
-
 #### Question 1 : Dans votre $HOME, créez un dossier test, et dans ce dossier un fichier fichier1 contenant quelques lignes de texte. Quels sont les droits sur test et fichier1 ?
-drwxr-xr-x  2 root root    4096 mars  18 11:49 test/
--rw-r--r--  1 root root   37 mars  18 11:49 fichier1
+Création du dossier test dans notre $HOME :
+```
+mkdir test
+ll
+```
+On obtient alors comme droits : ```drwxrwxr-x```.
 
+Création du fichier fichier1 dans notre dossier test :
+```
+echo "contenu" > test/fichier1.txt
+ll test/
+```
+On obtient alors comme droits : ```-rw-rw-r--```.
 
 #### Question 2 : Retirez tous les droits sur ce fichier (même pour vous), puis essayez de le modifier et de l’afficher en tant que root. Conclusion ?
-Après avoir modifié ls droits de tous les users/groupes, le root peut quand même modifier le fichier.
+
 
 #### Question 3 : Redonnez vous les droits en écriture et exécution sur fichier puis exécutez la commande echo "echo Hello" > fichier. On a vu lors des TP précédents que cette commande remplace le contenu d’un fichier s’il existe déjà. Que peut-on dire au sujet des droits ?
 
@@ -120,22 +130,45 @@ Après avoir modifié ls droits de tous les users/groupes, le root peut quand m�
 
 
 #### Question 9 : Rétablissez le droit en exécution du répertoire test. Attribuez au fichier essai les droits suffisants pour qu’une autre personne de votre groupe puisse y accéder en lecture, mais pas en écriture.
-
+```
+chmod +x test
+cd test
+chmod 740 nouveau (111 110 000)
+```
 
 #### Question 10 : Définissez un umask très restrictif qui interdit à quiconque à part vous l’accès en lecture ou en écriture, ainsi que la traversée de vos répertoires. Testez sur un nouveau fichier et un nouveau répertoire.
-
+```
+umask 0077
+mkdir test (111 000 000)
+touch testfile (110 000 000)
+```
 
 #### Question 11 : Définissez un umask très permissif qui autorise tout le monde à lire vos fichiers et traverser vos réper-toires, mais n’autorise que vous à écrire. Testez sur un nouveau fichier et un nouveau répertoire.
-
+```
+umask 0022
+mkdir test (111 101 101)
+touch testfile (111 100 100)
+```
 
 #### Question 12 : Définissez un umask équilibré qui vous autorise un accès complet et autorise un accès en lecture auxmembres de votre groupe. Testez sur un nouveau fichier et un nouveau répertoire.
-
+```
+umask 0027
+mkdir test (111 101 000)
+touch testfile (111 100 000)
+```
 
 #### Question 13 : Transcrivez les commandes suivantes de la notation classique à la notation octale ou vice-versa (vouspourrez vous aider de la commande stat pour valider vos réponses) :
 * chmod u=rx,g=wx,o=r fic
 * chmod uo+w,g-rx fic en sachant que les droits initiaux de fic sont r--r-x---
 * chmod 653 fic en sachant que les droits initiaux de fic sont 711
 * chmod u+x,g=w,o-r fic en sachant que les droits initiaux de fic sont r--r-x---
+
+```
+chmod u=rx,g=wx,o=r fic => chmod 534 fic
+chmod uo+w,g-rx fic => chmod 602 fic
+chmod 653 fic => chmod u-x,g+r,o+w fic
+chmod u+x,g=w,o-r fic => chmod 520 fic
+```
 
 #### Question 14 : Affichez les droits sur le programme passwd. Que remarquez-vous ? En affichant les droits du fichier/etc/passwd, pouvez-vous justifier les permissions sur le programme passwd ?
 
