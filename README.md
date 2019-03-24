@@ -95,22 +95,21 @@ Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun
 
 #### Question 1 : Dans votre $HOME, créez un dossier test, et dans ce dossier un fichier fichier1 contenant quelques lignes de texte. Quels sont les droits sur test et fichier1 ?
 Création du dossier ```test``` dans notre $HOME : ```mkdir test```.  
-On obtient alors comme droits avec la commande ```ll```: ```drwxrwxr-x```.
+On obtient alors comme droits avec la commande ```ll```: ```drwxr-xr-x ```. Le dossier est donc disponible en lecture, écriture et exécution pour username, et en lecture et exécution pour les membres du groupe users et pour les autres utilisateurs non membres.  
 
 Création du fichier ```fichier1``` dans notre dossier test ```echo "contenu" > test/fichier1.txt```.  
-On obtient alors comme droits avec la commande ```ll test/```-: ```-rw-rw-r--```.
+On obtient alors comme droits avec la commande ```ll test/```-: ```-rw-r--r--```. Le fichier est donc disponible en lecture et écriture pour username, et en lecture seule pour les membres du groupe users et les autres utilisateurs.
 
 #### Question 2 : Retirez tous les droits sur ce fichier (même pour vous), puis essayez de le modifier et de l’afficher en tant que root. Conclusion ?
 On saisit la commande ```chmod 0 fichier1``` afin de retirer tous les doits sur ce fichier.  
 On va ensuite passer root : ```su root```.  
-On tape ensuite : ```nano fichier1```. Il est alors possible de modifier et lire ```fichier1```.
+On tape ensuite : ```nano fichier1```. Il est alors possible de modifier et lire ```fichier1``` puisque root possède quand même les droits sur tout.
 
 #### Question 3 : Redonnez vous les droits en écriture et exécution sur fichier puis exécutez la commande echo "echo Hello" > fichier. On a vu lors des TP précédents que cette commande remplace le contenu d’un fichier s’il existe déjà. Que peut-on dire au sujet des droits ?
-On saisit les commandes : 
-```
-chmod 300 fichier1
-echo "echo Hello" > fichier1
-```
+On saisit la commande ```chmod 300 fichier1``` pour se donner les droits w+x sur le fichier.
+On saisit ensuite la commande ```echo "echo Hello" > fichier1```.  
+Si on n'a pas les droits d'écriture, il ne peut pas remplacer le contenu d'un fichier déjà existant. Cependant ayant les droits d'écriture et bien nous pouvons.
+
 
 #### Question 4 : Essayez d’exécuter le fichier. Est-ce que cela fonctionne ? Et avec sudo ? Expliquez.
 
