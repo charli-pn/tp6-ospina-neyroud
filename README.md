@@ -199,14 +199,17 @@ On obtiendra alors pour les droits de :
 * chmod 653 fic en sachant que les droits initiaux de fic sont 711
 * chmod u+x,g=w,o-r fic en sachant que les droits initiaux de fic sont r--r-x---  
   
-Pour ```chmod u=rx,g=wx,o=r fic``` = ```chmod 534 fic```.  
-Pour ```chmod uo+w,g-rx fic``` = ```chmod 602 fic```.  
-Pour ```chmod 653 fic``` = ```chmod u-x,g+r,o+w fic```.  
-Pour ```chmod u+x,g=w,o-r fic``` = ```chmod 520 fic```.  
-
+Pour ```chmod u=rx,g=wx,o=r fic``` <=> ```chmod 534 fic```.  
+Pour ```chmod uo+w,g-rx fic``` <=> ```chmod 602 fic```.  
+Pour ```chmod 653 fic``` <=> ```chmod u-x,g+r,o+w fic```.  
+Pour ```chmod u+x,g=w,o-r fic``` <=> ```chmod 520 fic```.  
 
 #### Question 14 : Affichez les droits sur le programme passwd. Que remarquez-vous ? En affichant les droits du fichier/etc/passwd, pouvez-vous justifier les permissions sur le programme passwd ?
-
+La commande ```ll /usr/bin/passwd``` va nous renvoyer : ```-rwsr-xr-x root root```.  
+On remarque que le droit d'exécution est remplacé par un ```s```. Cela signifie qu'à l'exécution, le programme va se lancer comme si c'était l'owner qui le lançait (ici, ```root```) sans avoir besoin d'utiliser ```sudo``` par exemple.
+  
+La commande ```ll /etc/passwd``` va nous renvoyer : ```-rw-r--r-- root root```.  
+Seul l'owner (```root```) possède les droits d'écriture sur ce fichier. Ainsi, le bit de setuid (le ```s```) permet à n'importe quel utilisateur d'utiliser le programme en tant que ```root``` et donc de modifier ce fichier.
 
 #### Question 15 : Access Control Lists (ACL) : suivez le tutoriel de cette page : https://doc.ubuntu-fr.org/acl.
 
