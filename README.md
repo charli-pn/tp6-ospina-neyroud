@@ -26,12 +26,12 @@ Pour vérifier que la création de leur dossier "home" est bien effective on sai
 
 #### Question 4 : Donnez deux moyens d’afficher les membres de groupe2
 On peut utiliser la commande :
-  * ```sudo cat /etc/group | grep 'groupe2'``` par exemple qui nous retourne ```groupe2:x:1002:u2,u3,u4```
-  * ```members groupe2``` non installée par défaut qui retoune ```u2 u3 u4```
+* ```sudo cat /etc/group | grep 'groupe2'``` par exemple qui nous retourne ```groupe2:x:1002:u2,u3,u4```
+* ```members groupe2``` non installée par défaut qui retoune ```u2 u3 u4```
 
 #### Question 5 : Faites de groupe1 le groupe propriétaire de /home/u1 et /home/u2 et de groupe2 le groupe propriétaire de /home/u3 et /home/u4
 ```sudo chown -R :groupe1 /home/u1 /home/u2```  
-```sudo chown -R :groupe2 /home/u3 /home/u4```
+```sudo chown -R :groupe2 /home/u3 /home/u4```  
 L'argument "-R" permet de d'appliquer les droits de manière récursive. 
 
 #### Question 6 : Remplacez le groupe primaire des utilisateurs :
@@ -56,7 +56,7 @@ Non puisque nous ne lui avons pas encore assigné de mot de passe.
 On définit un mot de passe pour u1 avec la commande ```sudo passwd u1```.
 
 #### Question 11 : Quels sont l’uid et le gid de u1 ?
-On se connecte avec l'utilisateur u1 : ```su u1```. On saisit ensuite la commande ```id```.
+On se connecte avec l'utilisateur u1 : ```su u1```. On saisit ensuite la commande ```id```.  
 On obtient alors ```uid=1001(u1) gid=1001(groupe1) groupes=1001(groupe1)```.
 
 #### Question 12 : Quel utilisateur a pour uid ?
@@ -69,7 +69,7 @@ On saisit la commande ```cat /etc/group | grep groupe1``` qui nous retourne alor
 On saisit la commande ```grep :1002: /etc/group``` qui nous retourne alors ```groupe2:x:1002:u2,u3,u4```. C'est donc le groupe 2 qui a pour guid 1002.
 
 #### Question 15 : Retirez l’utilisateur u3 du groupe groupe2. Que se passe-t-il ? Expliquez.
-On saisit la commande ```sudo gpasswd -d u3 groupe2```.
+On saisit la commande ```sudo gpasswd -d u3 groupe2```.  
 On obtient alors ```Retrait de l'utilisateur u3 du groupe groupe2```.
 
 #### Question 16 : Modifiez le compte de u4 de sorte que :
@@ -78,7 +78,7 @@ On obtient alors ```Retrait de l'utilisateur u3 du groupe groupe2```.
 * il faut attendre 5 jours pour modifier un mot de passe (-m)
 * l’utilisateur est averti 14 jours avant l’expiration de son mot de passe (-W)
 * le compte sera bloqué 30 jours après expiration du mot de passe (-I)
-
+  
 On saisit la commande ```sudo chage -E 2019-06-01 -M 90 -m 5 -W 14 -I 30  u4```.
 
 #### Question 17 : Quel est l’interpréteur de commandes (Shell) de l’utilisateur root ?
@@ -106,7 +106,7 @@ On va ensuite passer root : ```su root```.
 On tape ensuite : ```nano fichier1```. Il est alors possible de modifier et lire ```fichier1``` puisque root possède quand même les droits sur tout.
 
 #### Question 3 : Redonnez vous les droits en écriture et exécution sur fichier puis exécutez la commande echo "echo Hello" > fichier. On a vu lors des TP précédents que cette commande remplace le contenu d’un fichier s’il existe déjà. Que peut-on dire au sujet des droits ?
-On saisit la commande ```chmod 300 fichier1``` pour se donner les droits w+x sur le fichier.
+On saisit la commande ```chmod 300 fichier1``` pour se donner les droits w+x sur le fichier.  
 On saisit ensuite la commande ```echo "echo Hello" > fichier1```.  
   
 Si on n'a pas les droits d'écriture, il ne peut pas remplacer le contenu d'un fichier déjà existant. Cependant ayant les droits d'écriture et bien nous pouvons.
@@ -128,15 +128,15 @@ On va créer un fichier ```nouveau``` : ```touch nouveau``` et le répertoire ``
 On va retirer au fichier ```nouveau``` le droit en écriture : ```chmod -w nouveau .```.  
 Un ```echo "bonjour" > nouveau``` ne fonctionnera pas sans les droits en écriture.  
 On va donner au dossier ```test``` le droit en écriture : ```chmod +w .```.  
-Un ```echo "bonjour" > nouveau``` ne fonctionnera toujours pas sans les droits d'écriture.
-Un ```rm nouveau " > nouveau``` ne fonctionnera pas sans les droits d'écriture.
+Un ```echo "bonjour" > nouveau``` ne fonctionnera toujours pas sans les droits d'écriture.  
+Un ```rm nouveau " > nouveau``` ne fonctionnera pas sans les droits d'écriture.  
   
 Nous pouvons donc en déduire que le changement des droits sur un dossier ne modifie pas les droits sur le fichier contenu dans ce dossier (absence de recursivité).
 
 #### Question 7 : Positionnez vous dans votre répertoire personnel, puis retirez le droit en exécution du répertoire test. Tentez de créer, supprimer, ou modifier un fichier dans le répertoire test, de vous y déplacer, d’en lister le contenu, etc...Qu’en déduisez vous quant au sens du droit en exécution pour les répertoires ?
 On va se positionner dans le répertoire personnel ```cd```.  
-On va retirer le droix en exécution du répertoire ```test``` : ```chmod -x test/```.
-On va ensuite effecteur diverses manipulations dans ce répertoire : ```touch test/nouveau2``` -> ne marche pas, ```nano test/nouveau``` -> ne marche pas, ```cat test/nouveau``` -> ne marche pas, ```rm test/nouveau``` -> ne marche pas, ```cd test``` -> ne marche pas.
+On va retirer le droix en exécution du répertoire ```test``` : ```chmod -x test/```.  
+On va ensuite effecteur diverses manipulations dans ce répertoire : ```touch test/nouveau2``` -> ne marche pas, ```nano test/nouveau``` -> ne marche pas, ```cat test/nouveau``` -> ne marche pas, ```rm test/nouveau``` -> ne marche pas, ```cd test``` -> ne marche pas.  
 Avec la commande ```ll test``` on ne peut lire aucune information sauf le nom des fichiers/dossier contenu dans le dossier ```test```.  
   
 Le droit x sur les dossier permet de se déplacer dedans avec cd par exemple. Les actions ci-dessus ne sont pas possible car le chemin n'est plus accessible sans le droit x.
