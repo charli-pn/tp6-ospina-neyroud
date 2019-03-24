@@ -116,25 +116,42 @@ En saisissant la commande ```sudo ./fichier1``` le fichier s'éxécute !
 Cela est normal car même si on a les droits d'exécution, on n'a pas les droits de lecture et comme il s'agit d'un script et non d'un fichier binaire, il ne peut pas le lire. Avec ```sudo``` cependant, on peut car le superuser peut évidemment lire le fichier.
 
 #### Question 5 : Placez-vous dans le répertoire test, et retirez-vous le droit en lecture pour ce répertoire. Listez le contenu du répertoire, puis exécutez ou affichez le contenu du fichier essai. Qu’en déduisez-vous ? Rétablissez le droit en lecture sur test
-On saisit la commande ```cd test/``` puis ```chmod -r``` pour se retirer les droit en lecture de ce répertoire.  
+On saisit la commande ```cd test/``` puis ```chmod -r .``` pour se retirer les droit en lecture de ce répertoire.  
 La saisie de la commande ```cat fichier1``` va fonctionner mais ```ll``` ne fonctionnera pas sans droits de lecture.  
-On rétablit alors le droit en lecture sur test ```chmod +r```.
+On rétablit alors le droit en lecture sur test ```chmod +r .```.
 
 #### Question 6 : Créez dans test un fichier nouveau ainsi qu’un répertoire sstest. Retirez au fichier nouveau et au répertoire test le droit en écriture. Tentez de modifier le fichier nouveau. Rétablissez ensuite le droit en écriture au répertoire test. Tentez de modifier le fichier nouveau, puis de le supprimer. Que pouvez-vous déduire de toutes ces manipulations ?
 On se place dans le dossier ```test``` : ```cd test/```.  
 On va créer un fichier ```nouveau``` : ```touch nouveau``` et le répertoire ```sstest``` : ```mkdir sstest```.  
-On va retirer au fichier ```nouveau``` le droit en écriture : ```chmod -w nouveau```.  
+On va retirer au fichier ```nouveau``` le droit en écriture : ```chmod -w nouveau .```.  
 Un ```echo "bonjour" > nouveau``` ne fonctionnera pas sans les droits en écriture.  
-On va donner au dossier ```test``` le droit en écriture : ```chmod +w```.  
+On va donner au dossier ```test``` le droit en écriture : ```chmod +w .```.  
 Un ```echo "bonjour" > nouveau``` ne fonctionnera toujours pas sans les droits d'écriture.
 Un ```rm nouveau " > nouveau``` ne fonctionnera pas sans les droits d'écriture.
 Nous pouvons donc en déduire que le changement des droits sur un dossier ne modifie pas les droits sur le fichier contenu dans ce dossier (absence de recursivité).
 
 #### Question 7 : Positionnez vous dans votre répertoire personnel, puis retirez le droit en exécution du répertoire test. Tentez de créer, supprimer, ou modifier un fichier dans le répertoire test, de vous y déplacer, d’en lister le contenu, etc...Qu’en déduisez vous quant au sens du droit en exécution pour les répertoires ?
+On va se positionner dans le répertoire personnel ```cd```.  
 
+	chmod -x test/
+	touch test/nouveau2 -> ne fonctionne pas
+	nano test/nouveau -> ne fonctionne pas
+	cat test/nouveau -> ne fonctionne pas
+	rm test/nouveau -> ne fonctionne pas
+	cd test -> ne fonctionne pas
+	ll test -> on ne peut lire aucune information sauf le nom des fichiers/dossier contenu dans le dossier test/
 
 #### Question 8 : Rétablissez le droit en exécution du répertoire test. Positionnez vous dans ce répertoire et retirez lui à nouveau le droit d’exécution. Essayez de créer, supprimer et modifier un fichier dans le répertoire test, de vous déplacer dans ssrep, de lister son contenu. Qu’en concluez-vous quant à l’influence des droits que l’on possède sur le répertoire courant ? Peut-on retourner dans le répertoire parent avec ”cd ..” ? Pouvez-vous donner une explication ?
-
+On attribue au dossier test le droit en éxécution : ```chmod +x test```.  
+On se place dans le dossier test en lui retirant son droit en éxécution : ```cd test``` , ```chmod -x .```.  
+On essaye de créer un nouveau fichier : ```touch nouveau2``` -> ne marche pas.  
+On essaye diverses manipulations sur le fichier ```nouveau``` : 
+* ```nano nouveau``` ne marche pas
+* ```cat nouveau``` ne marche pas
+* ```rm nouveau``` ne marche pas
+La commande ```ll .```ne marche pas.  
+La commande ```cd sstest``` ne marche pas.  
+Seule la commande ```cd ..``` va fonctionner car elle utilise la variable ```pwd``` et enlève le dernier dossier.
 
 #### Question 9 : Rétablissez le droit en exécution du répertoire test. Attribuez au fichier essai les droits suffisants pour qu’une autre personne de votre groupe puisse y accéder en lecture, mais pas en écriture.
 ```
