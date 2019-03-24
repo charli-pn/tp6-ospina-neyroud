@@ -96,7 +96,7 @@ Le user nobody est un "non-privileged user". Comme le nom l'indique il n'a aucun
 #### Question 1 : Dans votre $HOME, créez un dossier test, et dans ce dossier un fichier fichier1 contenant quelques lignes de texte. Quels sont les droits sur test et fichier1 ?
 Création du dossier ```test``` dans notre $HOME : ```mkdir test```.  
 On obtient alors comme droits avec la commande ```ll``` : ```drwxrwxr-x ```.
-
+  
 Création du fichier ```fichier1``` dans notre dossier test ```echo "contenu" > test/fichier1.txt```.  
 On obtient alors comme droits avec la commande ```ll test/``` : ```-rw-rw-r--```. 
 
@@ -108,11 +108,13 @@ On tape ensuite : ```nano fichier1```. Il est alors possible de modifier et lire
 #### Question 3 : Redonnez vous les droits en écriture et exécution sur fichier puis exécutez la commande echo "echo Hello" > fichier. On a vu lors des TP précédents que cette commande remplace le contenu d’un fichier s’il existe déjà. Que peut-on dire au sujet des droits ?
 On saisit la commande ```chmod 300 fichier1``` pour se donner les droits w+x sur le fichier.
 On saisit ensuite la commande ```echo "echo Hello" > fichier1```.  
+  
 Si on n'a pas les droits d'écriture, il ne peut pas remplacer le contenu d'un fichier déjà existant. Cependant ayant les droits d'écriture et bien nous pouvons.
 
 #### Question 4 : Essayez d’exécuter le fichier. Est-ce que cela fonctionne ? Et avec sudo ? Expliquez.
 En saisissant la commande ```./fichier1``` le fichier ne s'éxécute pas.  
 En saisissant la commande ```sudo ./fichier1``` le fichier s'éxécute !  
+  
 Cela est normal car même si on a les droits d'exécution, on n'a pas les droits de lecture et comme il s'agit d'un script et non d'un fichier binaire, il ne peut pas le lire. Avec ```sudo``` cependant, on peut car le superuser peut évidemment lire le fichier.
 
 #### Question 5 : Placez-vous dans le répertoire test, et retirez-vous le droit en lecture pour ce répertoire. Listez le contenu du répertoire, puis exécutez ou affichez le contenu du fichier essai. Qu’en déduisez-vous ? Rétablissez le droit en lecture sur test
@@ -128,30 +130,27 @@ Un ```echo "bonjour" > nouveau``` ne fonctionnera pas sans les droits en écritu
 On va donner au dossier ```test``` le droit en écriture : ```chmod +w .```.  
 Un ```echo "bonjour" > nouveau``` ne fonctionnera toujours pas sans les droits d'écriture.
 Un ```rm nouveau " > nouveau``` ne fonctionnera pas sans les droits d'écriture.
+  
 Nous pouvons donc en déduire que le changement des droits sur un dossier ne modifie pas les droits sur le fichier contenu dans ce dossier (absence de recursivité).
 
 #### Question 7 : Positionnez vous dans votre répertoire personnel, puis retirez le droit en exécution du répertoire test. Tentez de créer, supprimer, ou modifier un fichier dans le répertoire test, de vous y déplacer, d’en lister le contenu, etc...Qu’en déduisez vous quant au sens du droit en exécution pour les répertoires ?
 On va se positionner dans le répertoire personnel ```cd```.  
-
-	chmod -x test/
-	touch test/nouveau2 -> ne fonctionne pas
-	nano test/nouveau -> ne fonctionne pas
-	cat test/nouveau -> ne fonctionne pas
-	rm test/nouveau -> ne fonctionne pas
-	cd test -> ne fonctionne pas
-	ll test -> on ne peut lire aucune information sauf le nom des fichiers/dossier contenu dans le dossier test/
+On va retirer le droix en exécution du répertoire ```test``` : ```chmod -x test/```.
+On va ensuite effecteur diverses manipulations dans ce répertoire : ```touch test/nouveau2``` -> ne marche pas, ```nano test/nouveau``` -> ne marche pas, ```cat test/nouveau``` -> ne marche pas, ```rm test/nouveau``` -> ne marche pas, ```cd test``` -> ne marche pas.
+Avec la commande ```ll test``` on ne peut lire aucune information sauf le nom des fichiers/dossier contenu dans le dossier ```test```.  
+  
+Le droit x sur les dossier permet de se déplacer dedans avec cd par exemple. Les actions ci-dessus ne sont pas possible car le chemin n'est plus accessible sans le droit x.
 
 #### Question 8 : Rétablissez le droit en exécution du répertoire test. Positionnez vous dans ce répertoire et retirez lui à nouveau le droit d’exécution. Essayez de créer, supprimer et modifier un fichier dans le répertoire test, de vous déplacer dans ssrep, de lister son contenu. Qu’en concluez-vous quant à l’influence des droits que l’on possède sur le répertoire courant ? Peut-on retourner dans le répertoire parent avec ”cd ..” ? Pouvez-vous donner une explication ?
 On attribue au dossier test le droit en éxécution : ```chmod +x test```.  
 On se place dans le dossier test en lui retirant son droit en éxécution : ```cd test``` , ```chmod -x .```.  
 On essaye de créer un nouveau fichier : ```touch nouveau2``` -> ne marche pas.  
-On essaye diverses manipulations sur le fichier ```nouveau``` : 
-* ```nano nouveau``` ne marche pas
-* ```cat nouveau``` ne marche pas
-* ```rm nouveau``` ne marche pas  
+On essaye diverses manipulations sur le fichier ```nouveau``` : ```nano nouveau``` ne marche pas, ```cat nouveau``` ne marche pas et ```rm nouveau``` ne marche pas.   
 La commande ```ll .```ne marche pas.  
 La commande ```cd sstest``` ne marche pas.  
-Seule la commande ```cd ..``` va fonctionner car elle utilise la variable ```pwd``` et enlève le dernier dossier.
+Seule la commande ```cd ..``` va fonctionner car elle utilise la variable ```pwd``` et enlève le dernier dossier.  
+  
+On ne peut pas obtenir le contenu du dossier actuel car on a pas les droit sur le chemin demandé (chemin relatif), par contre on peut le faire avec un chemin absolu car on possède les droits sur le dossier parent (chemin absolu).
 
 #### Question 9 : Rétablissez le droit en exécution du répertoire test. Attribuez au fichier essai les droits suffisants pour qu’une autre personne de votre groupe puisse y accéder en lecture, mais pas en écriture.
 ```
