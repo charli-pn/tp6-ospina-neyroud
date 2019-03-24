@@ -153,45 +153,57 @@ Seule la commande ```cd ..``` va fonctionner car elle utilise la variable ```pwd
 On ne peut pas obtenir le contenu du dossier actuel car on a pas les droit sur le chemin demandé (chemin relatif), par contre on peut le faire avec un chemin absolu car on possède les droits sur le dossier parent (chemin absolu).
 
 #### Question 9 : Rétablissez le droit en exécution du répertoire test. Attribuez au fichier essai les droits suffisants pour qu’une autre personne de votre groupe puisse y accéder en lecture, mais pas en écriture.
+Afin de donner les droit de lecture à un fichier à une autre personne du groupe de l'utilisateur il suffit d'utiliser la commande ```chmod``` comme suivant :
 ```
 chmod +x test
 cd test
-chmod 740 nouveau (111 110 000)
+chmod 740 nouveau
 ```
 
 #### Question 10 : Définissez un umask très restrictif qui interdit à quiconque à part vous l’accès en lecture ou en écriture, ainsi que la traversée de vos répertoires. Testez sur un nouveau fichier et un nouveau répertoire.
+Afin de restreindre totalement l'accès des fichier créée par l'utilisateur il suffit de modifier le umask comme ceci :
 ```
-umask 0077
-mkdir test (111 000 000)
-touch testfile (110 000 000)
+umask 077
+mkdir test
+touch testfile
 ```
+On obtiendra alors pour les droits de : 
+* test : ```drwx------```
+* testfile : ```-rw--------``` 
 
 #### Question 11 : Définissez un umask très permissif qui autorise tout le monde à lire vos fichiers et traverser vos réper-toires, mais n’autorise que vous à écrire. Testez sur un nouveau fichier et un nouveau répertoire.
+Pour un umask moins restrictif (droit de lecture et de traversée du répértoire) pour l'utilisateur :
 ```
-umask 0022
-mkdir test (111 101 101)
-touch testfile (111 100 100)
+umask 522
+mkdir test 
+touch testfile
 ```
+On obtiendra alors pour les droits de : 
+* test : ```d-w-r-xr-x```
+* testfile : ```--w-r--r--``` 
 
-#### Question 12 : Définissez un umask équilibré qui vous autorise un accès complet et autorise un accès en lecture auxmembres de votre groupe. Testez sur un nouveau fichier et un nouveau répertoire.
+#### Question 12 : Définissez un umask équilibré qui vous autorise un accès complet et autorise un accès en lecture aux membres de votre groupe. Testez sur un nouveau fichier et un nouveau répertoire.
+Pour un umask équilibré (accès en lecture aux membres du groupes) :
 ```
-umask 0027
-mkdir test (111 101 000)
-touch testfile (111 100 000)
+umask 033
+mkdir test 
+touch testfile
 ```
+On obtiendra alors pour les droits de : 
+* test : ```drwxr--r--```
+* testfile : ```drwxr--r--``` 
 
-#### Question 13 : Transcrivez les commandes suivantes de la notation classique à la notation octale ou vice-versa (vouspourrez vous aider de la commande stat pour valider vos réponses) :
+#### Question 13 : Transcrivez les commandes suivantes de la notation classique à la notation octale ou vice-versa (vous pourrez vous aider de la commande stat pour valider vos réponses) :
 * chmod u=rx,g=wx,o=r fic
 * chmod uo+w,g-rx fic en sachant que les droits initiaux de fic sont r--r-x---
 * chmod 653 fic en sachant que les droits initiaux de fic sont 711
-* chmod u+x,g=w,o-r fic en sachant que les droits initiaux de fic sont r--r-x---
+* chmod u+x,g=w,o-r fic en sachant que les droits initiaux de fic sont r--r-x---  
+  
+Pour ```chmod u=rx,g=wx,o=r fic``` = ```chmod 534 fic```.  
+Pour ```chmod uo+w,g-rx fic``` = ```chmod 602 fic```.  
+Pour ```chmod 653 fic``` = ```chmod u-x,g+r,o+w fic```.  
+Pour ```chmod u+x,g=w,o-r fic``` = ```chmod 520 fic```.  
 
-```
-chmod u=rx,g=wx,o=r fic => chmod 534 fic
-chmod uo+w,g-rx fic => chmod 602 fic
-chmod 653 fic => chmod u-x,g+r,o+w fic
-chmod u+x,g=w,o-r fic => chmod 520 fic
-```
 
 #### Question 14 : Affichez les droits sur le programme passwd. Que remarquez-vous ? En affichant les droits du fichier/etc/passwd, pouvez-vous justifier les permissions sur le programme passwd ?
 
