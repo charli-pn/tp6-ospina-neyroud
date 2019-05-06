@@ -11,7 +11,7 @@ On utilise l'nterface graphique de VirtualBox pour répondre à cette question.
 La commande ```cfdisk -l``` permet de lister les disques durs connectés au système.
 
 #### Question 3 : Partitionnez ce disque en utilisant fdisk : créez une première partition de 2 Go de type Linux (n°83), et une seconde partition de 3 Go en NTFS (n°7)
-La commande ```sudo fdisk sdb``` permet de lancer l'outil fdisk sur le disque sdb.  
+La commande ```fdisk sdb``` permet de lancer l'outil fdisk sur le disque sdb.  
 On appuie ensuite sur la touche ```n```pour ajouter une partition.  
 On laisse par défaut tout les éléments sauf la fin de partition ou il faut mettre ```+2G``` pour préciser que l'on veut une partition de 2 Go (et ```+3G``` pour préciser que l'on veut une partition de 3 Go).  
 Pour changer le type d'une partition il faut appuyer sur la touche ```t``` puis entrer le numéro hexadécimal du type, ```83``` pour le format de type Linux et ```7``` pour le format de type NTFS.
@@ -21,7 +21,7 @@ On formate la partition sdb1 au format EXT4 avec la commande ```mkfs.ext4 /dev/s
 On formate la partition sdb2 au format NTFS avec la commande ```mkfs.ntfs /dev/sdb2```.  
 
 #### Question 5 : Pourquoi la commande df -T, qui affiche le type de système de fichier des partitions, ne fonctionne-telle pas sur notre disque ?
-La commande ```df -T``` ne fonctionne pas car les partitions ne sont pas montées.
+La commande ```df -T``` ne fonctionne pas car les partitions ne sont pas montées. (df ne connait la taille que de ce qui est monté).
 
 #### Question 6 : Faites en sorte que les deux partitions créées soient montées automatiquement au démarrage de la machine, respectivement dans les points de montage /data et /win (vous pourrez vous passer des UUID en raison de l’impossibilité d’effectuer des copier-coller)
 
