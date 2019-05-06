@@ -5,7 +5,7 @@ Dans ce sixième TP, nous allons manipuler divers outils de gestion des disques 
 ## Exercice 1. Disques et partitions
 
 #### Question 1 : Dans l’interface de configuration de votre VM, créez un second disque dur, de 5 Go dynamiquement
-
+On utilise l'nterface graphique de VirtualBox pour répondre à cette question.
 
 #### Question 2 : Vérifiez que ce nouveau disque dur est bien détecté par le système
 
