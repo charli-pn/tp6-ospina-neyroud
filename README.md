@@ -11,7 +11,10 @@ On utilise l'nterface graphique de VirtualBox pour répondre à cette question.
 La commande ```cfdisk -l``` permet de lister les disques durs connectés au système.
 
 #### Question 3 : Partitionnez ce disque en utilisant fdisk : créez une première partition de 2 Go de type Linux (n°83), et une seconde partition de 3 Go en NTFS (n°7)
-
+La commande ```sudo fdisk sdb``` permet de lancer l'outil fdisk sur le disque sdb.  
+On appuie ensuite sur la touche ```n```pour ajouter une partition.  
+On laisse par défaut tout les éléments sauf la fin de partition ou il faut mettre ```+2G``` pour préciser que l'on veut une partition de 2G.  
+Pour changer le type d'une partition il faut appuyer sur la touche ```t``` puis entrer le numéro hexadécimal du type, ```7``` pour le format NTFS.
 
 #### Question 4 : A ce stade, les partitions ont été créées, mais elles n’ont pas été formatées avec leur système de fichiers. A l’aide de la commande mkfs, formatez vos deux partitions (pensez à consulter le manuel !)
 
