@@ -34,10 +34,10 @@ Pour automatiser le montage au démarrage, il faut éditer le fichier /etc/fstab
 * ```/dev/sdb2 /win ntfs auto 0 0```
 
 #### Question 7 : Utilisez la commande mount puis redémarrez votre VM pour valider la configuration
-
+Après redémarrage de la VM, on peut constater que les deux partitions ont bien été montées sur les points de montages spécifiés dans /etc/fstab.
 
 #### Question 8 : Montez votre clé USB dans la VM
-
+Fait.
 
 #### Question 9 : Créez un dossier partagé entre votre VM et votre système hôte (rem. il peut être nécessaire d’installer les Additions invité de VirtualBox
 
