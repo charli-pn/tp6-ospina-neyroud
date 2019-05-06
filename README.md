@@ -18,8 +18,7 @@ Pour changer le type d'une partition il faut appuyer sur la touche ```t``` puis 
 
 #### Question 4 : A ce stade, les partitions ont été créées, mais elles n’ont pas été formatées avec leur système de fichiers. A l’aide de la commande mkfs, formatez vos deux partitions (pensez à consulter le manuel !)
 On formate la partition sdb1 au format ext4 avec la commande ```mkfs.ext4 /dev/sdb1```.  
-Idem pour l'autre partition sdb2 avec la commande ```mkfs.ext4 /dev/sdb2```.  
-Le format ext4 est le plus récent des formats de fichiers.
+On formate la partition sdb2 au format ntfs avec la commande ```mkfs.ntfs /dev/sdb2```.  
 
 #### Question 5 : Pourquoi la commande df -T, qui affiche le type de système de fichier des partitions, ne fonctionne-telle pas sur notre disque ?
 
