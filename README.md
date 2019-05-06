@@ -17,11 +17,11 @@ On laisse par défaut tout les éléments sauf la fin de partition ou il faut me
 Pour changer le type d'une partition il faut appuyer sur la touche ```t``` puis entrer le numéro hexadécimal du type, ```83``` pour le format de type Linux et ```7``` pour le format de type NTFS.
 
 #### Question 4 : A ce stade, les partitions ont été créées, mais elles n’ont pas été formatées avec leur système de fichiers. A l’aide de la commande mkfs, formatez vos deux partitions (pensez à consulter le manuel !)
-On formate la partition sdb1 au format ext4 avec la commande ```mkfs.ext4 /dev/sdb1```.  
-On formate la partition sdb2 au format ntfs avec la commande ```mkfs.ntfs /dev/sdb2```.  
+On formate la partition sdb1 au format EXT4 avec la commande ```mkfs.ext4 /dev/sdb1```.  
+On formate la partition sdb2 au format NTFS avec la commande ```mkfs.ntfs /dev/sdb2```.  
 
 #### Question 5 : Pourquoi la commande df -T, qui affiche le type de système de fichier des partitions, ne fonctionne-telle pas sur notre disque ?
-
+La commande ```df -T``` ne fonctionne pas car les partitions ne sont pas montées.
 
 #### Question 6 : Faites en sorte que les deux partitions créées soient montées automatiquement au démarrage de la machine, respectivement dans les points de montage /data et /win (vous pourrez vous passer des UUID en raison de l’impossibilité d’effectuer des copier-coller)
 
