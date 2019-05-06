@@ -5,7 +5,7 @@ Dans ce sixième TP, nous allons manipuler divers outils de gestion des disques 
 ## Exercice 1. Disques et partitions
 
 #### Question 1 : Dans l’interface de configuration de votre VM, créez un second disque dur, de 5 Go dynamiquement
-On utilise l'nterface graphique de VirtualBox pour répondre à cette question.
+On utilise l'interface graphique de VirtualBox pour répondre à cette question.
 
 #### Question 2 : Vérifiez que ce nouveau disque dur est bien détecté par le système
 La commande ```cfdisk -l``` permet de lister les disques durs connectés au système.
@@ -34,12 +34,14 @@ Pour automatiser le montage au démarrage, il faut éditer le fichier /etc/fstab
 * ```/dev/sdb2 /win ntfs auto 0 0```
 
 #### Question 7 : Utilisez la commande mount puis redémarrez votre VM pour valider la configuration
-Après redémarrage de la VM, on peut constater que les deux partitions ont bien été montées sur les points de montages spécifiés dans /etc/fstab.
+Après redémarrage de la VM on saisit la commande ```mount -l``` et on constate que les deux partitions ont bien été montées sur les points de montages spécifiés dans /etc/fstab.
 
 #### Question 8 : Montez votre clé USB dans la VM
-Fait.
+On saisit la commande ```fdisk -l``` pour voir le nouveau peripherique de montage.  
+On utilise ensuite la commande ```mount /dev/sdX /Mnt``` pour monter la clef usb.
 
 #### Question 9 : Créez un dossier partagé entre votre VM et votre système hôte (rem. il peut être nécessaire d’installer les Additions invité de VirtualBox
+On réalise cette étape avec l'interface graphique de VirtualBox.
 
 
 ## Exercice 2. Partitionnement LVM
