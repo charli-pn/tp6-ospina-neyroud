@@ -27,7 +27,8 @@ La commande ```df -T``` ne fonctionne pas car les partitions ne sont pas montée
 En premier lieu, il faut créer les répertoires /data et /win avec les commandes ```mkdir```.  
 Ensuite pour monter manuellement les partitions on saisit les commandes :
 * ```mount /dev/sdb1 /data```
-* ```mount /dev/sdb2 /win```.  
+* ```mount /dev/sdb2 /win```
+
 Pour automatiser le montage au démarrage, il faut éditer le fichier /etc/fstab en insérant les commandes :
 * ```/dev/sdb1 /data ext4 auto 0 0``` 
 * ```/dev/sdb2 /win ntfs auto 0 0```
